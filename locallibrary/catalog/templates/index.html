@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% block title %}
+    <title>Місцева бібліотека</title>
+{% endblock %}
+{% block content %}
+<h1>Місцева бібліотека</h1>
+<p>Раді вітати в <em>Місцевій бібліотеці</em>, дуже простий веб-сайт Django, розроблений як навчальний приклад у мережі розробників Mozilla.</p>
+<h2>Динамічний контент</h2>
+<p>Бібліотека має наступну кількість записів:</p>
+<ul>
+    <li><strong>Книги:</strong> {{ num_books }}</li>
+    <li><strong>Копії:</strong> {{ num_instances }}</li>
+    <li><strong>Автори:</strong> {{ num_authors }}</li>
+    <li><strong>Жанри:</strong>{{ num_genres }}</li>
+</ul>
+
+<p>Ви заходили на цю сторінку {{ num_visits }}{% if num_visits == 1 %} раз {% else %} разів{% endif %}.</p>
+{% endblock %}

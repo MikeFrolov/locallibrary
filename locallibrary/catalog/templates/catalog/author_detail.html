@@ -1,0 +1,25 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<h1><smal>Автор:</smal> {{ author.first_name }} {{ author.last_name }}</h1>
+<p>{{ author.date_of_birth }} - {{ date_of_death }}</p>
+<br>
+  <div class="container">
+    <div style="margin-left:20px;margin-top:20px">
+      <h4><strong>Книги:</strong></h4>
+      <hr>
+      {% if author.book_set.all %}
+        {% for book in author.book_set.all %}
+      <h4>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a>
+        <small>({{ book.bookinstance_set.all.count }})</small>
+      </h4>
+      <br>
+      <p>{{ book.summary }}</p>
+      <hr>
+        {% endfor %}
+      {% else %}
+        <p>В бібліотеці відсутній список авторів!</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

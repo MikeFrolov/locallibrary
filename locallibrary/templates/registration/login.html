@@ -1,0 +1,41 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<br>
+  <center><h2>Вхід в систему</h2></center>
+<br>
+{% if form.errors %}
+  <p>Ім'я користувача та пароль не знайдено. Спробуйте ще раз.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Ваш обліковий запис не має доступу до цієї сторінки. Щоб продовжити, увійдіть за допомогою облікового запису, який має доступ.</p>
+  {% else %}
+    <p>Будь ласка, увійдіть, щоб побачити цю сторінку.</p>
+  {% endif %}
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" name="username" placeholder="Імя користувача">
+          <label for="floatingInput">Імя користувача</label>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Пароль">
+          <label for="floatingPassword">Пароль</label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <button class="btn btn-primary" type="submit">Увійти</button>
+  </div>
+</form>
+
+{% endblock %}
